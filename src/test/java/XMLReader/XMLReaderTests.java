@@ -2,7 +2,6 @@ package XMLReader;
 
 import Reader.XMLReader;
 import org.junit.jupiter.api.Assertions;
-import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.xml.sax.SAXException;
@@ -20,7 +19,7 @@ class XMLReaderTests extends Assertions {
     @DisplayName("NotExistingFile")
     public void NotExistingFileTest() throws IOException, SAXException, ParserConfigurationException {
         Throwable thrown = assertThrows(FileNotFoundException.class, () -> {
-            reader.createDocument("NotExitstingFile.txt");
+            reader.createDocument("NotExistingFile.txt");
         });
     }
 

@@ -9,14 +9,19 @@ import java.util.ArrayList;
  * @version 1.3
  * @since 1.1
  */
+
 public class StudentInformation {
+
     /**
      * поле имя студента
      */
+
     private String student;
+
     /**
      * динамический список типа {@link ProgressStudent}
      */
+
     private ArrayList<ProgressStudent> progressStudents = new ArrayList<>();
 
     /**
@@ -24,6 +29,7 @@ public class StudentInformation {
      * @return student
      * @see StudentInformation
      */
+
     public String getStudent() {
         return student;
     }
@@ -34,6 +40,7 @@ public class StudentInformation {
      * @see StudentInformation
      * @since 1.0
      */
+
     public ArrayList<ProgressStudent> getProgressStudents() {
         return progressStudents;
     }
@@ -46,6 +53,7 @@ public class StudentInformation {
      * @see Student
      * @since 1.0
      */
+
     public void createStudent(String student) throws NumberFormatException{
         this.student = student;
     }
@@ -60,6 +68,7 @@ public class StudentInformation {
      * @see ProgressStudent
      * @since 1.0
      */
+
     public void addProgressStudent(ProgressStudent progressStudent) throws NumberFormatException{
         progressStudents.add(progressStudent);
     }

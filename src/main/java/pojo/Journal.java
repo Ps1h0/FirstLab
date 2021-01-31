@@ -1,16 +1,20 @@
 package pojo;
 
 import java.util.ArrayList;
+
 /**
  * Класс журнал
  * Содержит сведения о студентах, их предметах и оценкам по ним
  * @author OLEG
  * @version 1.3
  */
+
 public class Journal {
+
     /**
      * динамисческий список типа {@link StudentInformation}, содержащий студентов
      */
+
     private ArrayList<StudentInformation> students = new ArrayList<>();
 
     @Override
@@ -41,12 +45,11 @@ public class Journal {
      * @see Mark
      * @since 1.2
      */
+
     public void addStudent(String nameStudent, ArrayList<ProgressStudent> progressStudent) throws NumberFormatException {
         StudentInformation studentInformation = new StudentInformation();
         studentInformation.createStudent(nameStudent);
-        progressStudent.forEach(progressStudent1 -> {
-            studentInformation.addProgressStudent(progressStudent1);
-        });
+        progressStudent.forEach(studentInformation::addProgressStudent);
         students.add(studentInformation);
     }
 
@@ -56,6 +59,7 @@ public class Journal {
      * @see Journal
      * @since 1.0
      */
+
     public ArrayList<StudentInformation> getStudents() {
         return students;
     }
