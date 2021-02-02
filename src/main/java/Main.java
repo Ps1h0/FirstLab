@@ -19,8 +19,8 @@ public class Main {
             writer.writeToTxt(reader.getPOJO());
 
             UsHandler usHandler = new UsHandler("Main");
-            usHandler.lastSerializableJournal(reader.getPOJO());
-            //System.out.println(reader.getPOJO());
+            //usHandler.lastSerializableJournal(reader.getPOJO());
+            System.out.println(reader.getPOJO());
 
             FileOutputStream fileOutputStream = new FileOutputStream("tempJournal");
             ObjectOutputStream objectOutputStream = new ObjectOutputStream(fileOutputStream);
