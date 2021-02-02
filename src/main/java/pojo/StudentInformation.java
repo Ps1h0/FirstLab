@@ -1,5 +1,6 @@
 package pojo;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
 /**
@@ -10,7 +11,7 @@ import java.util.ArrayList;
  * @since 1.1
  */
 
-public class StudentInformation {
+public class StudentInformation implements Serializable {
 
     /**
      * поле имя студента

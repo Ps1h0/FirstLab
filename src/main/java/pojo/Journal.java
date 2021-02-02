@@ -1,5 +1,6 @@
 package pojo;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
 /**
@@ -9,7 +10,7 @@ import java.util.ArrayList;
  * @version 1.3
  */
 
-public class Journal {
+public class Journal implements Serializable {
 
     /**
      * динамисческий список типа {@link StudentInformation}, содержащий студентов

@@ -5,7 +5,7 @@
         <course name="AI" mark="5"/>
     </student>
     <student name="masha">
-        <course name="math" mark="5"/>
+        <course name="math" mark="8"/>
         <course name="AI" mark="2"/>
     </student>
 </students>

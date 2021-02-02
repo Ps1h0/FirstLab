@@ -1,6 +1,7 @@
 package pojo;
 
 import javax.security.auth.Subject;
+import java.io.Serializable;
 
 /**
  * Класс прогресс студента
@@ -13,7 +14,7 @@ import javax.security.auth.Subject;
  * Subject и Mark как было раньше
  */
 
-public class ProgressStudent {
+public class ProgressStudent implements Serializable {
 
     /**
      * поле предмет
