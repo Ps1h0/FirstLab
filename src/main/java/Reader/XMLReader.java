@@ -45,6 +45,7 @@ public class XMLReader {
      */
 
     public Journal getPOJO() {
+        journal = new Journal();
 
        NodeList nList = document.getElementsByTagName("student");
 

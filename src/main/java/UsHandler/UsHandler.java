@@ -69,10 +69,75 @@ public class UsHandler extends Throwable {
         ObjectInputStream objectInputStream = new ObjectInputStream(fileInputStream);
         Journal lastJournal = (Journal) objectInputStream.readObject();
         objectInputStream.close();
-        System.out.println(lastJournal.toString());
-        //lastJournal.getStudents().forEach(studentInformation -> {
-        //    String student = studentInformation.getStudent();
-       // });
+        System.out.println("last\n"+lastJournal.toString());
+        System.out.println("new\n"+journal.toString());
+        for (int i =0; i<lastJournal.getStudents().size(); i++){
+            for (int j =0; j<=i;j++){
+                System.out.println(lastJournal.getStudents().get(i).getStudent());
+                System.out.println(journal.getStudents().get(j).getStudent());
+                if (lastJournal.getStudents().get(i).getStudent().equals(journal.getStudents().get(j).getStudent())){
+                    for (int k = 0; k<lastJournal.getStudents().get(i).getProgressStudents().size();k++){
+                        for (int m=0;m<=k;m++){
+                            //last
+                            System.out.printf("%s:%s\n",lastJournal
+                                    .getStudents()
+                                    .get(i)
+                                    .getProgressStudents()
+                                    .get(k)
+                                    .getSubject()
+                                    ,lastJournal
+                                    .getStudents()
+                                    .get(i)
+                                    .getProgressStudents()
+                                    .get(k)
+                                    .getMark());
+//                          System.out.println(lastJournal
+//                                    .getStudents()
+//                                    .get(i)
+//                                    .getProgressStudents()
+//                                    .get(k)
+//                                    .getSubject());
+                            //new
+                            System.out.printf("%s:%s\n",journal
+                                    .getStudents()
+                                    .get(j)
+                                    .getProgressStudents()
+                                    .get(m)
+                                    .getSubject()
+                                    ,journal
+                                    .getStudents()
+                                    .get(j)
+                                    .getProgressStudents()
+                                    .get(m)
+                                    .getMark());
+//                            System.out.println(journal
+//                                    .getStudents()
+//                                    .get(i)
+//                                    .getProgressStudents()
+//                                    .get(m)
+//                                    .getSubject());
+                        }
+                    }
+
+                }
+            }
+        };
+        //System.out.println(lastJournal.toString());
+//        lastJournal.getStudents().forEach(studentInformation -> {
+//            String laststudent = studentInformation.getStudent();
+//            journal.getStudents().forEach(studentInformation1 -> {
+//                String newstudent = studentInformation1.getStudent();
+//                System.out.println(laststudent);
+//                System.out.println(newstudent);
+//                if (laststudent.equals(newstudent)){
+//                    System.out.println("Da");
+//                } else {
+//                    System.out.println("Net");
+//                }
+//            });
+
+
+
 
 
     }

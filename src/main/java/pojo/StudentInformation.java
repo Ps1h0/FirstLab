@@ -73,4 +73,12 @@ public class StudentInformation implements Serializable {
     public void addProgressStudent(ProgressStudent progressStudent) throws NumberFormatException{
         progressStudents.add(progressStudent);
     }
+
+    @Override
+    public String toString() {
+        return "StudentInformation{" +
+                "student='" + student + '\'' +
+                ", progressStudents=" + progressStudents +
+                '}';
+    }
 }

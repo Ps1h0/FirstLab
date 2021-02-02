@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <students>
-    <student name="vasya">
-        <course name="math" mark="2"/>
+    <student name="vakya">
+        <course name="math" mark="1"/>
         <course name="AI" mark="5"/>
     </student>
     <student name="masha">
-        <course name="math" mark="8"/>
+        <course name="math" mark="7"/>
         <course name="AI" mark="2"/>
     </student>
 </students>

@@ -2,6 +2,7 @@ import Reader.XMLReader;
 import UsHandler.UsHandler;
 import Writer.Writer;
 import org.xml.sax.SAXException;
+import pojo.Journal;
 
 import javax.xml.parsers.ParserConfigurationException;
 import java.io.FileOutputStream;
@@ -14,17 +15,23 @@ public class Main {
         try {
 
             XMLReader reader = new XMLReader();
-            reader.createDocument("src/main/resources/text.xml");
+            reader.createDocument("src/main/resources/txt.xml");
             Writer writer = new Writer();
-            writer.writeToTxt(reader.getPOJO());
+            Journal jur = (Journal) reader.getPOJO();
+            writer.writeToTxt(jur);
+
 
             UsHandler usHandler = new UsHandler("Main");
-            //usHandler.lastSerializableJournal(reader.getPOJO());
-            System.out.println(reader.getPOJO());
+            usHandler.lastSerializableJournal(jur);
+            //System.out.println(jur.getStudents().toString());
+            //System.out.println("Last journal");
+
+            //System.out.println("new journal");
+           // System.out.println(reader.getPOJO());
 
             FileOutputStream fileOutputStream = new FileOutputStream("tempJournal");
             ObjectOutputStream objectOutputStream = new ObjectOutputStream(fileOutputStream);
-            objectOutputStream.writeObject(reader.getPOJO());
+            objectOutputStream.writeObject(jur);
             objectOutputStream.close();
 
 
