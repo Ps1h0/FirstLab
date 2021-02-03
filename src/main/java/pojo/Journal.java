@@ -3,8 +3,8 @@ package pojo;
 import java.util.ArrayList;
 
 /**
- * Класс журнал
- * Содержит сведения о студентах, их предметах и оценкам по ним
+ * Class journal
+ * Contains information about students, their subjects and marks
  * @author OLEG
  * @version 1.3
  */
@@ -12,7 +12,7 @@ import java.util.ArrayList;
 public class Journal {
 
     /**
-     * динамисческий список типа {@link StudentInformation}, содержащий студентов
+     * dynamic list type of {@link StudentInformation}, containing students
      */
 
     private ArrayList<StudentInformation> students = new ArrayList<>();
@@ -33,10 +33,10 @@ public class Journal {
     }
 
     /**
-     * Добавить студента и его оценки по предмету(ам)
-     * @param nameStudent Имя студента
-     * @param progressStudent Пара предмет - оценка типа ProgressStudent в виде ArrayList
-     * @throws NumberFormatException использован неверный тип данных {@link Journal#addStudent(String, ArrayList)}
+     * Add student and subject: mark
+     * @param nameStudent Student name
+     * @param progressStudent Pair subject - mark type of ProgressStudent in the form of ArrayList
+     * @throws NumberFormatException used incorrect data type {@link Journal#addStudent(String, ArrayList)}
      * @see Journal
      * @see ProgressStudent
      * @see StudentInformation
@@ -54,8 +54,8 @@ public class Journal {
     }
 
     /**
-     * Вернет динамический массив
-     * @return students {@link ArrayList} типа {@link StudentInformation}
+     * Returns dynamic list
+     * @return students {@link ArrayList} type of {@link StudentInformation}
      * @see Journal
      * @since 1.0
      */

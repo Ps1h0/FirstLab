@@ -3,8 +3,8 @@ package pojo;
 import java.util.ArrayList;
 
 /**
- * Класс информация о студенте
- * Содержит информацию о студенте, его имя, предмет и оценку по предмету
+ * Class student information
+ * Contains info about student (name, subject, mark)
  * @author OLEG
  * @version 1.3
  * @since 1.1
@@ -13,19 +13,19 @@ import java.util.ArrayList;
 public class StudentInformation {
 
     /**
-     * поле имя студента
+     * student name field
      */
 
     private String student;
 
     /**
-     * динамический список типа {@link ProgressStudent}
+     * dynamic list type of {@link ProgressStudent}
      */
 
     private ArrayList<ProgressStudent> progressStudents = new ArrayList<>();
 
     /**
-     * Вернет объект
+     * returns object
      * @return student
      * @see StudentInformation
      */
@@ -35,8 +35,8 @@ public class StudentInformation {
     }
 
     /**
-     * Вернет динамический массив
-     * @return progressStudents {@link ArrayList} типа {@link ProgressStudent}
+     * returns dynamic list
+     * @return progressStudents {@link ArrayList} type of {@link ProgressStudent}
      * @see StudentInformation
      * @since 1.0
      */
@@ -46,9 +46,9 @@ public class StudentInformation {
     }
 
     /**
-     * Создает запись о студенте
-     * @param student имя студента
-     * @throws NumberFormatException использован неверный тип данных {@link StudentInformation#createStudent(String)}
+     * Creates record about student
+     * @param student student name
+     * @throws NumberFormatException used incorrect data type {@link StudentInformation#createStudent(String)}
      * @see StudentInformation
      * @see Student
      * @since 1.0
@@ -59,9 +59,9 @@ public class StudentInformation {
     }
 
     /**
-     * Создает запись пары предмет : оценка
-     * @param progressStudent объект типа {@link ProgressStudent}
-     * @throws NumberFormatException использован неверный тип данных {@link StudentInformation#addProgressStudent(ProgressStudent)}
+     * Creates pair of subject: mark
+     * @param progressStudent object type of {@link ProgressStudent}
+     * @throws NumberFormatException used incorrect data type {@link StudentInformation#addProgressStudent(ProgressStudent)}
      * @see StudentInformation
      * @see Subject
      * @see Mark
