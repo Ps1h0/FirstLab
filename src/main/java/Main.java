@@ -14,7 +14,7 @@ import java.util.HashMap;
 public class Main {
 
     public static void main(String[] args) throws Exception {
-        try {
+//        try {
 
             XMLReader reader = new XMLReader();
             reader.createDocument("src/main/resources/text.xml");
@@ -35,8 +35,8 @@ public class Main {
 
 
 
-        } catch (Exception e){
-            UsHandler.HandlerException(e, "Main");
-        }
+//        } catch (Exception e){
+//            UsHandler.HandlerException(e, "Main");
+//        }
     }
 }

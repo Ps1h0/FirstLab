@@ -1,6 +1,7 @@
 package pojo;
 
 import javax.security.auth.Subject;
+import java.io.Serializable;
 
 /**
  * Class progress student
@@ -11,7 +12,7 @@ import javax.security.auth.Subject;
  *
  */
 
-public class ProgressStudent {
+public class ProgressStudent implements Serializable {
 
     /**
      * subject field
