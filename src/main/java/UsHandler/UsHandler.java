@@ -1,6 +1,8 @@
 package UsHandler;
 import jdk.internal.org.xml.sax.SAXException;
 import pojo.Journal;
+import pojo.ProgressStudent;
+import pojo.StudentInformation;
 
 import javax.xml.parsers.ParserConfigurationException;
 import javax.xml.stream.XMLStreamException;
@@ -61,6 +63,77 @@ public class UsHandler extends Throwable {
     public boolean hasLastJournal(){
         File lastJournal = new File("tempJournal");
         return lastJournal.exists();
+    }
+
+    /**
+     * Вернет строку состоящую из статуса изменения и того что изменилось
+     * @param idComand 0 - добавление, 1 - изменение, 2 - удаление
+     * @param lastValue старое значение {@link ProgressStudent}
+     * @param newValue новое значение {@link ProgressStudent}
+     * @return строка измение
+     */
+    public String getLog(int idComand, ProgressStudent lastValue, ProgressStudent newValue) {
+        switch (idComand) {
+            // добавление
+            case 0: return "Добавление:\n" + newValue.toString();
+            // изменение
+            case 1: return "Изменение:\n" + lastValue.toString() + " -> " + newValue.toString();
+            // удаление
+            case 2: return "Удаление:\n" + lastValue.toString();
+            default: return null;
+        }
+    }
+    /**
+     * Вернет строку состоящую из статуса изменения и того что изменилось
+     * @param idComand 0 - добавление, 1 - изменение, 2 - удаление
+     * @param lastValue старое значение {@link StudentInformation}
+     * @param newValue новое значение {@link StudentInformation}
+     * @return строка измение
+     */
+    public String getLog(int idComand, StudentInformation lastValue, StudentInformation newValue) {
+        switch (idComand) {
+            // добавление
+            case 0: return "Добавление:\n" + newValue.toString();
+            // изменение
+            case 1: return "Изменение:\n" + lastValue.toString() + " -> " + newValue.toString();
+            // удаление
+            case 2: return "Удаление:\n" + lastValue.toString();
+            default: return null;
+        }
+    }
+
+    public String chandgeLog(Journal lastJournal, Journal newJournal) {
+        StudentInformation lStudent = null;
+        StudentInformation nStudent = null;
+        ProgressStudent lSubject = null;
+        ProgressStudent nSubject = null;
+        for (int i = 0; i < newJournal.getStudents().size(); i++) {
+            nStudent = newJournal.getStudents().get(i);
+            for (int j = 0; j >= i; j++) {
+                lStudent = lastJournal.getStudents().get(j);
+                // если имя нового студента равно имени старого
+                if ( nStudent.getStudent().equals( lStudent.getStudent() ) ) {
+                    // то
+                    for (int k = 0; k < newJournal.getStudents().get(i).getProgressStudents().size(); k++) {
+                        nSubject = newJournal.getStudents().get(i).getProgressStudents().get(k);
+                        for (int l = 0; l >= k; l++) {
+                            lSubject = lastJournal.getStudents().get(j).getProgressStudents().get(l);
+                            // если новый предмет студента не равен старому предмету студента
+                            if ( !(nSubject.getSubject().equals( lSubject.getSubject() )) ) {
+                                // то
+                                System.out.println(getLog(1, lStudent, nStudent));
+                            } else if ( !(nSubject.getMark().equals( lSubject.getMark() )) ) {
+                                System.out.println( getLog(1, lStudent, nStudent) );
+                            }
+                        }
+                    }
+                    continue;
+                } else {
+                    System.out.println(getLog(0, lStudent, nStudent));
+                }
+            }
+        }
+        return null;
     }
 
     public void lastSerializableJournal(Journal journal) throws IOException, ClassNotFoundException {
