@@ -34,7 +34,7 @@ public class XMLReader {
      * @throws SAXException
      */
 
-    public void createDocument(String filePath) throws ParserConfigurationException, IOException, SAXException {
+    public void createDocument(String filePath) throws IOException {
         try {
             DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
             DocumentBuilder builder = factory.newDocumentBuilder();
