@@ -4,36 +4,33 @@ import javax.security.auth.Subject;
 import java.io.Serializable;
 
 /**
- * Класс прогресс студента
- * Содержит данные о паре предмет : оценка
+ * Class ProgressStudent
+ * Contains data about pair of subject: mark
  * @author OLEG
  * @version 1.3
  * @since 1.1
- *
- * Изменено создание класса, теперь поля класса имею тип String и не создают дополнительный объект в виде
- * Subject и Mark как было раньше
  */
 
 public class ProgressStudent implements Serializable {
 
     /**
-     * поле предмет
+     * subject field
      */
 
     private String subject;
 
     /**
-     * поле оценка
+     * mark field
      */
 
     private String mark;
 
     /**
-     * Конструктор класса {@link ProgressStudent}
-     * Создает объект с двумя полями {@link ProgressStudent#subject} и {@link ProgressStudent#mark}
-     * @param subject предмет
-     * @param mark оценка
-     * @throws NumberFormatException использован неверный передаваемый тип данных класса {@link ProgressStudent}
+     * Class constructor {@link ProgressStudent}
+     * Creates object with two fields {@link ProgressStudent#subject} and {@link ProgressStudent#mark}
+     * @param subject subject
+     * @param mark mark
+     * @throws NumberFormatException used invalid data type {@link ProgressStudent}
      * @see ProgressStudent
      * @see Subject
      * @see Mark
@@ -46,8 +43,8 @@ public class ProgressStudent implements Serializable {
     }
 
     /**
-     * Вернет объект предмет
-     * @return subject типа {@link Subject}
+     * Returns subject mark
+     * @return subject type of {@link Subject}
      * @see ProgressStudent
      * @since 1.0
      */
@@ -57,8 +54,8 @@ public class ProgressStudent implements Serializable {
     }
 
     /**
-     * Вернет оценку
-     * @return оценку
+     * Returns mark
+     * @return Mark
      * @see ProgressStudent
      * @since 1.0
      */
@@ -69,9 +66,7 @@ public class ProgressStudent implements Serializable {
 
     @Override
     public String toString() {
-        return "ProgressStudent{" +
-                "subject='" + subject + '\'' +
-                ", mark='" + mark + '\'' +
-                '}';
+        return "subject='" + subject + '\'' +
+                ", mark='" + mark + '\'';
     }
 }

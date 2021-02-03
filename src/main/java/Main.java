@@ -3,6 +3,7 @@ import UsHandler.UsHandler;
 import Writer.Writer;
 import org.xml.sax.SAXException;
 import pojo.Journal;
+import pojo.StudentInformation;
 
 import javax.xml.parsers.ParserConfigurationException;
 import java.io.FileOutputStream;
@@ -23,6 +24,11 @@ public class Main {
 
 
             UsHandler usHandler = new UsHandler("Main");
+            Journal lastJournal = usHandler.getLastJournal();
+            System.out.println(usHandler.changeLog(lastJournal, jur));
+//            usHandler.markDifference(usHandler.getLastJournal(), jur, "vakya");
+
+//            usHandler.chandgeLog(usHandler.getLastJournal(), jur);
             //usHandler.lastSerializableJournal(jur);
             //System.out.println(jur.getStudents().toString());
             //System.out.println("Last journal");
@@ -34,6 +40,7 @@ public class Main {
             ObjectOutputStream objectOutputStream = new ObjectOutputStream(fileOutputStream);
             objectOutputStream.writeObject(jur);
             objectOutputStream.close();
+
 
 
 

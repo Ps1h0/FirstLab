@@ -7,9 +7,12 @@ import pojo.StudentInformation;
 import javax.xml.parsers.ParserConfigurationException;
 import javax.xml.stream.XMLStreamException;
 import java.io.*;
+import java.util.Date;
 import java.util.InputMismatchException;
 import java.util.logging.*;
 public class UsHandler extends Throwable {
+
+    Date date = new Date();
 
     private static final Logger logger = Logger.getLogger(UsHandler.class.getName());
     private final String classname;
@@ -94,13 +97,105 @@ public class UsHandler extends Throwable {
     public String getLog(int idComand, StudentInformation lastValue, StudentInformation newValue) {
         switch (idComand) {
             // добавление
-            case 0: return "Добавление:\n" + newValue.toString();
+            case 0:
+                return "Добавление:\n" + newValue.toString();
             // изменение
-            case 1: return "Изменение:\n" + lastValue.toString() + " -> " + newValue.toString();
+            case 1:
+                return "Изменение:\n" + lastValue.toString() + " -> " + newValue.toString();
             // удаление
-            case 2: return "Удаление:\n" + lastValue.toString();
-            default: return null;
+            case 2:
+                return "Удаление:\n" + lastValue.toString();
+            default:
+                return null;
         }
+    }
+
+    public int getIndex(Journal journal, String name){
+        for (int i = 0; i < journal.getStudents().size(); i++) {
+            if (journal.getStudents().get(i).getStudent().equals(name)) {
+                return i;
+            }
+        }
+        return -1;
+    }
+
+    public String markDifference(Journal lastJournal, Journal newJournal, String name) {
+        StringBuilder result = new StringBuilder();
+        int indexLastJournal = getIndex(lastJournal, name);
+        int indexNewJournal = getIndex(newJournal, name);
+        for(ProgressStudent progressLast: lastJournal.getStudents().get(indexLastJournal).getProgressStudents()) {
+            boolean check = false;
+            for(ProgressStudent progressNew: newJournal.getStudents().get(indexNewJournal).getProgressStudents()) {
+                if (progressLast.getSubject().equals(progressNew.getSubject())) {
+                    if (!progressLast.getMark().equals(progressNew.getMark())) {
+                        result.append(String.format("%s: Изменено %s -> %s\n", date.toString(), progressLast, progressNew));
+                    }
+                    check = true;
+                    break;
+                }
+            }
+            if (!check) {
+                result.append(String.format("%s: Удален {%s} для %s\n", date.toString(), progressLast.toString(), name));
+            }
+        }
+        for(ProgressStudent progressNew: newJournal.getStudents().get(indexLastJournal).getProgressStudents()) {
+            boolean check = false;
+            for(ProgressStudent progressLast: lastJournal.getStudents().get(indexNewJournal).getProgressStudents()) {
+                if (progressLast.getSubject().equals(progressNew.getSubject())) {
+                    check = true;
+                    break;
+                }
+            }
+            if (!check) {
+                result.append(String.format("%s: Добавлен {%s} для %s\n", date.toString(), progressNew.toString(), name));
+            }
+        }
+        return result.toString();
+    }
+
+    public String changeLog(Journal lastJournal, Journal newJournal) {
+        StringBuilder result = new StringBuilder();
+        for (StudentInformation a: lastJournal.getStudents()){
+            boolean check = false;
+
+            for(StudentInformation b: newJournal.getStudents()) {
+                if (a.getStudent().equals(b.getStudent())){
+                    check = true;
+                    break;
+                }
+
+            }
+            if(!check) {
+                result.append(String.format("%s: Удален %s\n", date.toString(), a));
+            }
+            check = false;
+        }
+
+        for (StudentInformation a: newJournal.getStudents()){
+            boolean check = false;
+
+            for(StudentInformation b: lastJournal.getStudents()) {
+                if (a.getStudent().equals(b.getStudent())){
+                    check = true;
+                    break;
+                }
+
+            }
+            if(!check) {
+                result.append(String.format("%s: Добавлен %s\n", date.toString(), a));
+            }
+            check = false;
+        }
+
+        for (StudentInformation a: newJournal.getStudents()){
+            for(StudentInformation b: lastJournal.getStudents()) {
+                if (a.getStudent().equals(b.getStudent())) {
+                    result.append(markDifference(lastJournal, newJournal, a.getStudent()));
+                }
+
+            }
+        }
+        return result.toString();
     }
 
     public String chandgeLog(Journal lastJournal, Journal newJournal) {

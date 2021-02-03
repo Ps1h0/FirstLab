@@ -76,7 +76,7 @@ public class StudentInformation implements Serializable {
 
     @Override
     public String toString() {
-        return "StudentInformation{" +
+        return "{" +
                 "student='" + student + '\'' +
                 ", progressStudents=" + progressStudents +
                 '}';

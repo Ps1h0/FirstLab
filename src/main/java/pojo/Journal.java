@@ -34,10 +34,10 @@ public class Journal implements Serializable {
     }
 
     /**
-     * Добавить студента и его оценки по предмету(ам)
-     * @param nameStudent Имя студента
-     * @param progressStudent Пара предмет - оценка типа ProgressStudent в виде ArrayList
-     * @throws NumberFormatException использован неверный тип данных {@link Journal#addStudent(String, ArrayList)}
+     * Add student and his marks
+     * @param nameStudent Student name
+     * @param progressStudent Pair subject - mark (ArrayList)
+     * @throws NumberFormatException invalid data type used {@link Journal#addStudent(String, ArrayList)}
      * @see Journal
      * @see ProgressStudent
      * @see StudentInformation
@@ -55,8 +55,8 @@ public class Journal implements Serializable {
     }
 
     /**
-     * Вернет динамический массив
-     * @return students {@link ArrayList} типа {@link StudentInformation}
+     * Returns dynamic array
+     * @return students {@link ArrayList} type of {@link StudentInformation}
      * @see Journal
      * @since 1.0
      */
