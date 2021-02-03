@@ -4,6 +4,6 @@ math : 2
 }AI : 5
 }
 masha {
-math : 7
+math : 2
 }AI : 4
 }

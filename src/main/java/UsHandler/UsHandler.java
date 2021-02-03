@@ -11,16 +11,30 @@ import java.util.Date;
 import java.util.InputMismatchException;
 import java.util.logging.*;
 public class UsHandler extends Throwable {
-
-    Date date = new Date();
-
+    //Дата
+    private Date date = new Date();
     private static final Logger logger = Logger.getLogger(UsHandler.class.getName());
-    private final String classname;
 
-    public UsHandler(String classname) {
-        this.classname = classname;
+
+    /**
+     *Method that creates a file with a list of changes
+     * @param file
+     * @param log
+     * @throws IOException
+     */
+    public void createLog(File file,String log) throws IOException {
+        FileWriter fileWriter;
+        fileWriter = new FileWriter(file,true);
+        fileWriter.write(log);
+        fileWriter.close();
     }
 
+    /**
+     *Method that catches exceptions
+     * @param e
+     * @param classname
+     * @throws IOException
+     */
     public static void HandlerException(Exception e, String classname) throws IOException {
         Handler filehandler = new FileHandler("debug.log");
         logger.addHandler(filehandler);
@@ -61,56 +75,21 @@ public class UsHandler extends Throwable {
         }
     }
     /**
-     * Вернет true, если прошлый журнал существует
-     * @return наличие прошлого журнала
+     * Returns true if the past log exists
+     * @return the presence of a past log
      */
-    public boolean hasLastJournal(){
+    private boolean hasLastJournal(){
         File lastJournal = new File("tempJournal");
         return lastJournal.exists();
     }
 
     /**
-     * Вернет строку состоящую из статуса изменения и того что изменилось
-     * @param idComand 0 - добавление, 1 - изменение, 2 - удаление
-     * @param lastValue старое значение {@link ProgressStudent}
-     * @param newValue новое значение {@link ProgressStudent}
-     * @return строка измение
+     *A method that returns the student's index by name.
+     * @param journal
+     * @param name
+     * @return i - student's index
      */
-    public String getLog(int idComand, ProgressStudent lastValue, ProgressStudent newValue) {
-        switch (idComand) {
-            // добавление
-            case 0: return "Добавление:\n" + newValue.toString();
-            // изменение
-            case 1: return "Изменение:\n" + lastValue.toString() + " -> " + newValue.toString();
-            // удаление
-            case 2: return "Удаление:\n" + lastValue.toString();
-            default: return null;
-        }
-    }
-    /**
-     * Вернет строку состоящую из статуса изменения и того что изменилось
-     * @param idComand 0 - добавление, 1 - изменение, 2 - удаление
-     * @param lastValue старое значение {@link StudentInformation}
-     * @param newValue новое значение {@link StudentInformation}
-     * @return строка измение
-     */
-    public String getLog(int idComand, StudentInformation lastValue, StudentInformation newValue) {
-        switch (idComand) {
-            // добавление
-            case 0:
-                return "Добавление:\n" + newValue.toString();
-            // изменение
-            case 1:
-                return "Изменение:\n" + lastValue.toString() + " -> " + newValue.toString();
-            // удаление
-            case 2:
-                return "Удаление:\n" + lastValue.toString();
-            default:
-                return null;
-        }
-    }
-
-    public int getIndex(Journal journal, String name){
+    private int getIndex(Journal journal, String name){
         for (int i = 0; i < journal.getStudents().size(); i++) {
             if (journal.getStudents().get(i).getStudent().equals(name)) {
                 return i;
@@ -119,7 +98,14 @@ public class UsHandler extends Throwable {
         return -1;
     }
 
-    public String markDifference(Journal lastJournal, Journal newJournal, String name) {
+    /**
+     *Method that returns a string with subjects and grades changed, added, or removed.
+     * @param lastJournal
+     * @param newJournal
+     * @param name
+     * @return result - Changes in grades and subjects
+     */
+    private String markDifference(Journal lastJournal, Journal newJournal, String name) {
         StringBuilder result = new StringBuilder();
         int indexLastJournal = getIndex(lastJournal, name);
         int indexNewJournal = getIndex(newJournal, name);
@@ -153,6 +139,12 @@ public class UsHandler extends Throwable {
         return result.toString();
     }
 
+    /**
+     *Method that returns a string with information about adding or removing students.
+     * @param lastJournal
+     * @param newJournal
+     * @return result - A line with information about changes in students and grades
+     */
     public String changeLog(Journal lastJournal, Journal newJournal) {
         StringBuilder result = new StringBuilder();
         for (StudentInformation a: lastJournal.getStudents()){
@@ -198,43 +190,11 @@ public class UsHandler extends Throwable {
         return result.toString();
     }
 
-    public String chandgeLog(Journal lastJournal, Journal newJournal) {
-        StudentInformation lStudent = null;
-        StudentInformation nStudent = null;
-        ProgressStudent lSubject = null;
-        ProgressStudent nSubject = null;
-        for (int i = 0; i < newJournal.getStudents().size(); i++) {
-            nStudent = newJournal.getStudents().get(i);
-            for (int j = 0; j >= i; j++) {
-                lStudent = lastJournal.getStudents().get(j);
-                // если имя нового студента равно имени старого
-                if ( nStudent.getStudent().equals( lStudent.getStudent() ) ) {
-                    // то
-                    for (int k = 0; k < newJournal.getStudents().get(i).getProgressStudents().size(); k++) {
-                        nSubject = newJournal.getStudents().get(i).getProgressStudents().get(k);
-                        for (int l = 0; l >= k; l++) {
-                            lSubject = lastJournal.getStudents().get(j).getProgressStudents().get(l);
-                            // если новый предмет студента не равен старому предмету студента
-                            if ( !(nSubject.getSubject().equals( lSubject.getSubject() )) ) {
-                                // то
-                                System.out.println(getLog(1, lStudent, nStudent));
-                            } else if ( !(nSubject.getMark().equals( lSubject.getMark() )) ) {
-                                System.out.println( getLog(1, lStudent, nStudent) );
-                            }
-                        }
-                    }
-                    continue;
-                } else {
-                    System.out.println(getLog(0, lStudent, nStudent));
-                }
-            }
-        }
-        return null;
-    }
-
     /**
-     * Вернет прошлый журнал, если он существует
-     * @return Прошлый журнал
+     * Method that returns the previous version of the log, if it exists
+     * @return lastJournal
+     * @throws IOException
+     * @throws ClassNotFoundException
      */
     public Journal getLastJournal() throws IOException, ClassNotFoundException{
         if (hasLastJournal()) {
@@ -249,85 +209,4 @@ public class UsHandler extends Throwable {
         }
 
     }
-
-    public void lastSerializableJournal(Journal journal) throws IOException, ClassNotFoundException {
-        //Чтение прошлого журнала из файла
-        FileInputStream fileInputStream = new FileInputStream("tempJournal");
-        ObjectInputStream objectInputStream = new ObjectInputStream(fileInputStream);
-        Journal lastJournal = (Journal) objectInputStream.readObject();
-        objectInputStream.close();
-        System.out.println("last\n"+lastJournal.toString());
-        System.out.println("new\n"+journal.toString());
-        for (int i =0; i<lastJournal.getStudents().size(); i++){
-            for (int j =0; j<=i;j++){
-                System.out.println(lastJournal.getStudents().get(i).getStudent());
-                System.out.println(journal.getStudents().get(j).getStudent());
-                if (lastJournal.getStudents().get(i).getStudent().equals(journal.getStudents().get(j).getStudent())){
-                    for (int k = 0; k<lastJournal.getStudents().get(i).getProgressStudents().size();k++){
-                        for (int m=0;m<=k;m++){
-                            //last
-                            System.out.printf("%s:%s\n",lastJournal
-                                    .getStudents()
-                                    .get(i)
-                                    .getProgressStudents()
-                                    .get(k)
-                                    .getSubject()
-                                    ,lastJournal
-                                    .getStudents()
-                                    .get(i)
-                                    .getProgressStudents()
-                                    .get(k)
-                                    .getMark());
-//                          System.out.println(lastJournal
-//                                    .getStudents()
-//                                    .get(i)
-//                                    .getProgressStudents()
-//                                    .get(k)
-//                                    .getSubject());
-                            //new
-                            System.out.printf("%s:%s\n",journal
-                                    .getStudents()
-                                    .get(j)
-                                    .getProgressStudents()
-                                    .get(m)
-                                    .getSubject()
-                                    ,journal
-                                    .getStudents()
-                                    .get(j)
-                                    .getProgressStudents()
-                                    .get(m)
-                                    .getMark());
-//                            System.out.println(journal
-//                                    .getStudents()
-//                                    .get(i)
-//                                    .getProgressStudents()
-//                                    .get(m)
-//                                    .getSubject());
-                        }
-                    }
-
-                }
-            }
-        };
-        //System.out.println(lastJournal.toString());
-//        lastJournal.getStudents().forEach(studentInformation -> {
-//            String laststudent = studentInformation.getStudent();
-//            journal.getStudents().forEach(studentInformation1 -> {
-//                String newstudent = studentInformation1.getStudent();
-//                System.out.println(laststudent);
-//                System.out.println(newstudent);
-//                if (laststudent.equals(newstudent)){
-//                    System.out.println("Da");
-//                } else {
-//                    System.out.println("Net");
-//                }
-//            });
-
-
-
-
-
-    }
-
-
 }
