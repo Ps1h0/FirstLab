@@ -1,7 +1,6 @@
 import Reader.XMLReader;
 import UsHandler.UsHandler;
 import Writer.Writer;
-import org.xml.sax.SAXException;
 import pojo.Journal;
 import pojo.StudentInformation;
 
@@ -31,10 +30,7 @@ public class Main {
 
 
 
-            FileOutputStream fileOutputStream = new FileOutputStream("tempJournal");
-            ObjectOutputStream objectOutputStream = new ObjectOutputStream(fileOutputStream);
-            objectOutputStream.writeObject(jur);
-            objectOutputStream.close();
+            UsHandler.createTempJournal();
 
 
 
