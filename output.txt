@@ -1,9 +1,9 @@
 
-vasya {
+vakya {
 math : 2
 }AI : 5
 }
 masha {
-math : 5
-}AI : 2
+math : 2
+}AI : 4
 }
