@@ -1,5 +1,6 @@
 package Reader;
 
+import UsHandler.UsHandler;
 import org.w3c.dom.*;
 import org.xml.sax.SAXException;
 
@@ -33,10 +34,14 @@ public class XMLReader {
      * @throws SAXException
      */
 
-    public void createDocument(String filePath) throws ParserConfigurationException, IOException, SAXException {
-        DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
-        DocumentBuilder builder = factory.newDocumentBuilder();
-        document = builder.parse(new File(filePath));
+    public void createDocument(String filePath) throws IOException {
+        try {
+            DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
+            DocumentBuilder builder = factory.newDocumentBuilder();
+            document = builder.parse(new File(filePath));
+        }catch (Exception e) {
+            UsHandler.HandlerException(e, "XMLReader");
+        }
     }
 
     /**
@@ -44,26 +49,31 @@ public class XMLReader {
      * @return pojo objects filled by xml file
      */
 
-    public Journal getPOJO() {
+    public Journal getPOJO() throws IOException {
+        try {
 
-       NodeList nList = document.getElementsByTagName("student");
+            NodeList nList = document.getElementsByTagName("student");
 
-       for (int i = 0; i < nList.getLength(); i++){
-           Node nNode = nList.item(i);
-           if (nNode.getNodeType() == Node.ELEMENT_NODE) {
-               Element elem = (Element) nNode;
-               String name = elem.getAttribute("name");
-               NodeList nList1 = elem.getElementsByTagName("course");
-               ArrayList<ProgressStudent> marks = new ArrayList<>();
-               for (int j = 0; j < nList1.getLength(); j++) {
-                   Node nNode1 = nList1.item(j);
-                   Element elem1 = (Element) nNode1;
-                   marks.add(new ProgressStudent(elem1.getAttribute("name"), elem1.getAttribute("mark")));
-               }
-               journal.addStudent(name, marks);
-           }
-       }
-       return journal;
+            for (int i = 0; i < nList.getLength(); i++) {
+                Node nNode = nList.item(i);
+                if (nNode.getNodeType() == Node.ELEMENT_NODE) {
+                    Element elem = (Element) nNode;
+                    String name = elem.getAttribute("name");
+                    NodeList nList1 = elem.getElementsByTagName("course");
+                    ArrayList<ProgressStudent> marks = new ArrayList<>();
+                    for (int j = 0; j < nList1.getLength(); j++) {
+                        Node nNode1 = nList1.item(j);
+                        Element elem1 = (Element) nNode1;
+                        marks.add(new ProgressStudent(elem1.getAttribute("name"), elem1.getAttribute("mark")));
+                    }
+                    journal.addStudent(name, marks);
+                }
+            }
+        }catch (Exception e) {
+            UsHandler.HandlerException(e, "XMLReader");
+        }
+            return journal;
+
     }
 }
 
