@@ -10,6 +10,13 @@ import java.io.*;
 import java.util.Date;
 import java.util.InputMismatchException;
 import java.util.logging.*;
+
+/**
+ * Class UsHandler
+ * Class for catching exceptions and changes
+ * @author Danil Belonogov
+ * @version 1.0
+ */
 public class UsHandler extends Throwable {
     //Дата
     private Date date = new Date();
