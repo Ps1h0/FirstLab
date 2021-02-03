@@ -1,17 +1,4 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <!DOCTYPE log SYSTEM "logger.dtd">
 <log>
-<record>
-  <date>2021-02-02T15:40:12.050504700Z</date>
-  <millis>1612280412050</millis>
-  <nanos>504700</nanos>
-  <sequence>0</sequence>
-  <logger>UsHandler.UsHandler</logger>
-  <level>WARNING</level>
-  <class>UsHandler.UsHandler</class>
-  <method>HandlerException</method>
-  <thread>1</thread>
-  <message>Ошибка FileNotFoundException в классе Main
-Не удалось найти файл</message>
-</record>
 </log>

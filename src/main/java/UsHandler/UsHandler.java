@@ -10,8 +10,8 @@ import java.io.*;
 import java.util.InputMismatchException;
 import java.util.logging.*;
 public class UsHandler extends Throwable {
-    private static final Logger logger = Logger.getLogger(UsHandler.class.getName());
 
+    private static final Logger logger = Logger.getLogger(UsHandler.class.getName());
     private final String classname;
 
     public UsHandler(String classname) {
@@ -28,14 +28,12 @@ public class UsHandler extends Throwable {
         }
         //InputMismatchException
         if( e instanceof InputMismatchException){
-
             logger.log(Level.INFO, "Ошибка InputMismatchException в классе" + classname, e);
             System.exit(-1);
         }
         //FileNotFoundException файл не найден
         if (e instanceof FileNotFoundException){
             logger.log(Level.WARNING, "Ошибка FileNotFoundException в классе " + classname+"\nНе удалось найти файл");
-
             System.exit(-1);
         }
         //XMLStreamException не удалось прочитать XML
@@ -59,7 +57,10 @@ public class UsHandler extends Throwable {
             System.exit(-1);
         }
     }
-
+    /**
+     * Вернет true, если прошлый журнал существует
+     * @return наличие прошлого журнала
+     */
     public boolean hasLastJournal(){
         File lastJournal = new File("tempJournal");
         return lastJournal.exists();
@@ -134,6 +135,24 @@ public class UsHandler extends Throwable {
             }
         }
         return null;
+    }
+
+    /**
+     * Вернет прошлый журнал, если он существует
+     * @return Прошлый журнал
+     */
+    public Journal getLastJournal() throws IOException, ClassNotFoundException{
+        if (hasLastJournal()) {
+            FileInputStream fileInputStream = new FileInputStream("tempJournal");
+            ObjectInputStream objectInputStream = new ObjectInputStream(fileInputStream);
+            Journal lastJournal = (Journal) objectInputStream.readObject();
+            objectInputStream.close();
+            return lastJournal;
+        } else{
+            System.out.println("Прошлая версия журнала не найдена");
+            return null;
+        }
+
     }
 
     public void lastSerializableJournal(Journal journal) throws IOException, ClassNotFoundException {
