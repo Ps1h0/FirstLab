@@ -1,32 +1,31 @@
 package pojo;
 
-import java.io.Serializable;
 import java.util.ArrayList;
 
 /**
- * Class information about student
- * Contains info about student (name, subjects, marks)
+ * Класс информация о студенте
+ * Содержит информацию о студенте, его имя, предмет и оценку по предмету
  * @author OLEG
  * @version 1.3
  * @since 1.1
  */
 
-public class StudentInformation implements Serializable {
+public class StudentInformation {
 
     /**
-     * Student name field
+     * поле имя студента
      */
 
     private String student;
 
     /**
-     * dynamic list type of {@link ProgressStudent}
+     * динамический список типа {@link ProgressStudent}
      */
 
     private ArrayList<ProgressStudent> progressStudents = new ArrayList<>();
 
     /**
-     * Returns object
+     * Вернет объект
      * @return student
      * @see StudentInformation
      */
@@ -36,7 +35,7 @@ public class StudentInformation implements Serializable {
     }
 
     /**
-     * Returns dynamic list
+     * Вернет динамический массив
      * @return progressStudents {@link ArrayList} типа {@link ProgressStudent}
      * @see StudentInformation
      * @since 1.0
@@ -47,9 +46,9 @@ public class StudentInformation implements Serializable {
     }
 
     /**
-     * Creates record about student
-     * @param student student name
-     * @throws NumberFormatException used incorrect data type {@link StudentInformation#createStudent(String)}
+     * Создает запись о студенте
+     * @param student имя студента
+     * @throws NumberFormatException использован неверный тип данных {@link StudentInformation#createStudent(String)}
      * @see StudentInformation
      * @see Student
      * @since 1.0
@@ -60,9 +59,9 @@ public class StudentInformation implements Serializable {
     }
 
     /**
-     * Creates record subject: mark
-     * @param progressStudent object type of {@link ProgressStudent}
-     * @throws NumberFormatException used incorrect data type {@link StudentInformation#addProgressStudent(ProgressStudent)}
+     * Создает запись пары предмет : оценка
+     * @param progressStudent объект типа {@link ProgressStudent}
+     * @throws NumberFormatException использован неверный тип данных {@link StudentInformation#addProgressStudent(ProgressStudent)}
      * @see StudentInformation
      * @see Subject
      * @see Mark
@@ -72,13 +71,5 @@ public class StudentInformation implements Serializable {
 
     public void addProgressStudent(ProgressStudent progressStudent) throws NumberFormatException{
         progressStudents.add(progressStudent);
-    }
-
-    @Override
-    public String toString() {
-        return "{" +
-                "student='" + student + '\'' +
-                ", progressStudents=" + progressStudents +
-                '}';
     }
 }
