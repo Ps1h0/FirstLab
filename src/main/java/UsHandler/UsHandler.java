@@ -1,4 +1,5 @@
 package UsHandler;
+import Reader.XMLReader;
 import jdk.internal.org.xml.sax.SAXException;
 import pojo.Journal;
 import pojo.ProgressStudent;
@@ -203,7 +204,7 @@ public class UsHandler extends Throwable {
      * @throws IOException
      * @throws ClassNotFoundException
      */
-    public Journal getLastJournal() throws IOException, ClassNotFoundException{
+    public Journal getLastJournal() throws IOException, ClassNotFoundException, ParserConfigurationException, org.xml.sax.SAXException {
         if (hasLastJournal()) {
             FileInputStream fileInputStream = new FileInputStream("tempJournal");
             ObjectInputStream objectInputStream = new ObjectInputStream(fileInputStream);
@@ -212,8 +213,25 @@ public class UsHandler extends Throwable {
             return lastJournal;
         } else{
             System.out.println("Прошлая версия журнала не найдена");
+            createTempJournal();
+
             return null;
         }
 
+    }
+
+    /**
+     *
+     * @throws IOException
+     * @throws ParserConfigurationException
+     * @throws org.xml.sax.SAXException
+     */
+    public static void createTempJournal() throws IOException, ParserConfigurationException, org.xml.sax.SAXException {
+        XMLReader reader = new XMLReader();
+        reader.createDocument("src/main/resources/text.xml");
+        FileOutputStream fileOutputStream = new FileOutputStream("tempJournal");
+        ObjectOutputStream objectOutputStream = new ObjectOutputStream(fileOutputStream);
+        objectOutputStream.writeObject(reader.getPOJO());
+        objectOutputStream.close();
     }
 }
