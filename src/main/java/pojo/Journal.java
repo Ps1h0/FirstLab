@@ -4,8 +4,8 @@ import java.io.Serializable;
 import java.util.ArrayList;
 
 /**
- * Класс журнал
- * Содержит сведения о студентах, их предметах и оценкам по ним
+ * Journal of class
+ * Contains information about students (subject: mark)
  * @author OLEG
  * @version 1.3
  */
@@ -13,7 +13,7 @@ import java.util.ArrayList;
 public class Journal implements Serializable {
 
     /**
-     * динамисческий список типа {@link StudentInformation}, содержащий студентов
+     * dynamic list type of {@link StudentInformation}, contains students
      */
 
     private ArrayList<StudentInformation> students = new ArrayList<>();
