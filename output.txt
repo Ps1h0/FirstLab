@@ -2,12 +2,13 @@
 vakya {
 math : 2
 }AI : 5
+}PI : 000
 }
 masha {
-mtth : 2
-}AI : 4
+mtth : 111
+}AI : 555
 }
 misha {
 math : 2
-}AI : 4
+}AI : 222
 }

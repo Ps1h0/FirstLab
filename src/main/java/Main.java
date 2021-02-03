@@ -29,8 +29,8 @@ public class Main {
             usHandler.createLog(logFile,usHandler.changeLog(lastJournal, jur));
 
 
-
             UsHandler.createTempJournal();
+
 
 
 

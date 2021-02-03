@@ -122,7 +122,7 @@ public class UsHandler extends Throwable {
             for(ProgressStudent progressNew: newJournal.getStudents().get(indexNewJournal).getProgressStudents()) {
                 if (progressLast.getSubject().equals(progressNew.getSubject())) {
                     if (!progressLast.getMark().equals(progressNew.getMark())) {
-                        result.append(String.format("%s: Изменено %s -> %s\n", date.toString(), progressLast, progressNew));
+                        result.append(String.format("%s: Изменено для %s %s -> %s\n", date.toString(),name, progressLast, progressNew));
                     }
                     check = true;
                     break;
