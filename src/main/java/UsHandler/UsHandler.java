@@ -1,6 +1,6 @@
 package UsHandler;
 import Reader.XMLReader;
-import jdk.internal.org.xml.sax.SAXException;
+import org.xml.sax.SAXException;
 import pojo.Journal;
 import pojo.ProgressStudent;
 import pojo.StudentInformation;
@@ -48,37 +48,37 @@ public class UsHandler extends Throwable {
         logger.addHandler(filehandler);
         //ArithmeticException
         if (e instanceof ArithmeticException){
-            logger.log(Level.INFO, "Ошибка ArithmeticException  в классе " + classname, e);
+            logger.log(Level.INFO, "Error ArithmeticException in a class " + classname, e);
             System.exit(-1);
         }
         //InputMismatchException
         if( e instanceof InputMismatchException){
-            logger.log(Level.INFO, "Ошибка InputMismatchException в классе" + classname, e);
+            logger.log(Level.INFO, "Error InputMismatchException in a class " + classname, e);
             System.exit(-1);
         }
         //FileNotFoundException файл не найден
         if (e instanceof FileNotFoundException){
-            logger.log(Level.WARNING, "Ошибка FileNotFoundException в классе " + classname+"\nНе удалось найти файл");
+            logger.log(Level.WARNING, "Error FileNotFoundException in a class " + classname+"\nНе удалось найти файл");
             System.exit(-1);
         }
         //XMLStreamException не удалось прочитать XML
         if (e instanceof XMLStreamException){
-            logger.log(Level.WARNING, "Ошибка XMLStreamException в классе " + classname, e );
+            logger.log(Level.WARNING, "Error XMLStreamException in a class " + classname, e );
             System.exit(-1);
         }
         //InterruptedException ошибка потока
         if (e instanceof InterruptedException){
-            logger.log(Level.WARNING, "Ошибка InterruptedException в классе " + classname, e );
+            logger.log(Level.WARNING, "Error InterruptedException in a class " + classname, e );
             System.exit(-1);
         }
         //ParserConfigurationException ошибка конфигурации?
         if (e instanceof ParserConfigurationException){
-            logger.log(Level.WARNING, "Ошибка ParserConfigurationException в классе " + classname, e );
+            logger.log(Level.WARNING, "Error ParserConfigurationException in a class " + classname, e );
             System.exit(-1);
         }
         //SAXException ошибка анализатора xml(SAX)
         if (e instanceof SAXException){
-            logger.log(Level.WARNING, "Ошибка SAXException в классе " + classname, e );
+            logger.log(Level.WARNING, "Error SAXException in a class " + classname, e );
             System.exit(-1);
         }
     }
@@ -122,14 +122,14 @@ public class UsHandler extends Throwable {
             for(ProgressStudent progressNew: newJournal.getStudents().get(indexNewJournal).getProgressStudents()) {
                 if (progressLast.getSubject().equals(progressNew.getSubject())) {
                     if (!progressLast.getMark().equals(progressNew.getMark())) {
-                        result.append(String.format("%s: Изменено для %s %s -> %s\n", date.toString(),name, progressLast, progressNew));
+                        result.append(String.format("%s: Changed for %s %s -> %s\n", date.toString(),name, progressLast, progressNew));
                     }
                     check = true;
                     break;
                 }
             }
             if (!check) {
-                result.append(String.format("%s: Удален {%s} для %s\n", date.toString(), progressLast.toString(), name));
+                result.append(String.format("%s: Deleted {%s} for %s\n", date.toString(), progressLast.toString(), name));
             }
         }
         for(ProgressStudent progressNew: newJournal.getStudents().get(indexLastJournal).getProgressStudents()) {
@@ -141,7 +141,7 @@ public class UsHandler extends Throwable {
                 }
             }
             if (!check) {
-                result.append(String.format("%s: Добавлен {%s} для %s\n", date.toString(), progressNew.toString(), name));
+                result.append(String.format("%s: Added {%s} for %s\n", date.toString(), progressNew.toString(), name));
             }
         }
         return result.toString();
@@ -166,7 +166,7 @@ public class UsHandler extends Throwable {
 
             }
             if(!check) {
-                result.append(String.format("%s: Удален %s\n", date.toString(), a));
+                result.append(String.format("%s: Deleted %s\n", date.toString(), a));
             }
             check = false;
         }
@@ -182,7 +182,7 @@ public class UsHandler extends Throwable {
 
             }
             if(!check) {
-                result.append(String.format("%s: Добавлен %s\n", date.toString(), a));
+                result.append(String.format("%s: Added %s\n", date.toString(), a));
             }
             check = false;
         }
@@ -212,7 +212,7 @@ public class UsHandler extends Throwable {
             objectInputStream.close();
             return lastJournal;
         } else{
-            System.out.println("Прошлая версия журнала не найдена");
+            System.out.println("Previous journal version is not found");
             createTempJournal();
 
             return null;
