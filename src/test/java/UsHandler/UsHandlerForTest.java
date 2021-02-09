@@ -232,7 +232,7 @@ public class UsHandlerForTest extends Throwable {
     public static void createTempJournal() throws IOException, ParserConfigurationException, SAXException {
         XMLReader reader = new XMLReader();
         reader.createDocument("src/main/resources/text.xml");
-        FileOutputStream fileOutputStream = new FileOutputStream("tempJournal");
+        FileOutputStream fileOutputStream = new FileOutputStream("src/test/java/UsHandler/tempJournal");
         ObjectOutputStream objectOutputStream = new ObjectOutputStream(fileOutputStream);
         objectOutputStream.writeObject(reader.getPOJO());
         objectOutputStream.close();
