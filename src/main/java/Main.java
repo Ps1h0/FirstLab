@@ -14,10 +14,10 @@ import java.util.HashMap;
 public class Main {
 
     public static void main(String[] args) throws Exception {
-//        try {
-
+        try {
+            long start = System.currentTimeMillis();
             XMLReader reader = new XMLReader();
-            reader.createDocument("src/main/resources/text.xml");
+            reader.createDocument("src/main/resources/filename.xml");
             Writer writer = new Writer();
             Journal jur = (Journal) reader.getPOJO();
             writer.writeToTxt(jur);
@@ -30,13 +30,13 @@ public class Main {
 
 
             UsHandler.createTempJournal();
+            System.out.println((System.currentTimeMillis() - start));
 
 
 
 
-
-//        } catch (Exception e){
-//            UsHandler.HandlerException(e, "Main");
-//        }
+        } catch (Exception e){
+            UsHandler.HandlerException(e, "Main");
+        }
     }
 }
