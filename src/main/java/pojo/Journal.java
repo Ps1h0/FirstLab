@@ -4,8 +4,9 @@ import java.io.Serializable;
 import java.util.ArrayList;
 
 /**
- * Class journal
- * Contains information about students, their subjects and marks
+ * Class Journal
+ * Contains data about students, their subjects, and their marks
+
  * @author OLEG
  * @version 1.3
  */
@@ -13,7 +14,7 @@ import java.util.ArrayList;
 public class Journal implements Serializable {
 
     /**
-     * dynamic list type of {@link StudentInformation}, containing students
+     * Dynamic list type of {@link StudentInformation}, containing students
      */
 
     private ArrayList<StudentInformation> students = new ArrayList<>();
@@ -34,16 +35,13 @@ public class Journal implements Serializable {
     }
 
     /**
-     * Add student and subject: mark
+     * Add student and his marks
      * @param nameStudent Student name
-     * @param progressStudent Pair subject - mark type of ProgressStudent in the form of ArrayList
-     * @throws NumberFormatException used incorrect data type {@link Journal#addStudent(String, ArrayList)}
+     * @param progressStudent Pair subject - mark (ArrayList)
+     * @throws NumberFormatException invalid data type used {@link Journal#addStudent(String, ArrayList)}
      * @see Journal
      * @see ProgressStudent
      * @see StudentInformation
-     * @see Student
-     * @see Subject
-     * @see Mark
      * @since 1.2
      */
 
@@ -55,7 +53,7 @@ public class Journal implements Serializable {
     }
 
     /**
-     * Returns dynamic list
+     * Returns dynamic array
      * @return students {@link ArrayList} type of {@link StudentInformation}
      * @see Journal
      * @since 1.0

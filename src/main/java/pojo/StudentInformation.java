@@ -4,8 +4,8 @@ import java.io.Serializable;
 import java.util.ArrayList;
 
 /**
- * Class student information
- * Contains info about student (name, subject, mark)
+ * Class StudentInformation
+ * Contains info about student, his name, subject and mark
  * @author OLEG
  * @version 1.3
  * @since 1.1
@@ -26,8 +26,8 @@ public class StudentInformation implements Serializable {
     private ArrayList<ProgressStudent> progressStudents = new ArrayList<>();
 
     /**
-     * returns object
-     * @return student
+     * Returns object
+     * @return Student
      * @see StudentInformation
      */
 
@@ -36,7 +36,7 @@ public class StudentInformation implements Serializable {
     }
 
     /**
-     * returns dynamic list
+     * Return dynamic list
      * @return progressStudents {@link ArrayList} type of {@link ProgressStudent}
      * @see StudentInformation
      * @since 1.0
@@ -47,11 +47,10 @@ public class StudentInformation implements Serializable {
     }
 
     /**
-     * Creates record about student
+     * Creates data about students
      * @param student student name
      * @throws NumberFormatException used incorrect data type {@link StudentInformation#createStudent(String)}
      * @see StudentInformation
-     * @see Student
      * @since 1.0
      */
 
@@ -60,17 +59,23 @@ public class StudentInformation implements Serializable {
     }
 
     /**
-     * Creates pair of subject: mark
+     * Creates subject : mark pair
      * @param progressStudent object type of {@link ProgressStudent}
      * @throws NumberFormatException used incorrect data type {@link StudentInformation#addProgressStudent(ProgressStudent)}
      * @see StudentInformation
-     * @see Subject
-     * @see Mark
      * @see ProgressStudent
      * @since 1.0
      */
 
     public void addProgressStudent(ProgressStudent progressStudent) throws NumberFormatException{
         progressStudents.add(progressStudent);
+    }
+
+    @Override
+    public String toString() {
+        return "{" +
+                "student='" + student + '\'' +
+                ", progressStudents=" + progressStudents +
+                '}';
     }
 }
