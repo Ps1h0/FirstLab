@@ -214,8 +214,7 @@ public class UsHandler extends Throwable {
         } else{
             System.out.println("Previous journal version is not found");
             createTempJournal();
-
-            return null;
+            return getLastJournal();
         }
 
     }
