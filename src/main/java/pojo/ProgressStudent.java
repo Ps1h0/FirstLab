@@ -64,4 +64,12 @@ public class ProgressStudent implements Serializable {
     public String getMark() {
         return mark;
     }
+
+    @Override
+    public String toString() {
+        return "{" +
+                "subject='" + subject + '\'' +
+                ", mark='" + mark + '\'' +
+                '}';
+    }
 }
