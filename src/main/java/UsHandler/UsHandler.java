@@ -44,7 +44,7 @@ public class UsHandler extends Throwable {
      * @throws IOException
      */
     public static void HandlerException(Exception e, String classname) throws IOException {
-        Handler filehandler = new FileHandler("debug.log");
+        Handler filehandler = new FileHandler("debug.log", true);
         logger.addHandler(filehandler);
         //ArithmeticException
         if (e instanceof ArithmeticException){
@@ -227,7 +227,7 @@ public class UsHandler extends Throwable {
      */
     public static void createTempJournal() throws IOException, ParserConfigurationException, org.xml.sax.SAXException {
         XMLReader reader = new XMLReader();
-        reader.createDocument("src/main/resources/text.xml");
+        reader.createDocument("text.xml");
         FileOutputStream fileOutputStream = new FileOutputStream("tempJournal");
         ObjectOutputStream objectOutputStream = new ObjectOutputStream(fileOutputStream);
         objectOutputStream.writeObject(reader.getPOJO());

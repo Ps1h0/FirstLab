@@ -17,7 +17,7 @@ public class Main {
         try {
             long start = System.currentTimeMillis();
             XMLReader reader = new XMLReader();
-            reader.createDocument("src/main/resources/filename.xml");
+            reader.createDocument("text.xml");
             Writer writer = new Writer();
             Journal jur = (Journal) reader.getPOJO();
             writer.writeToTxt(jur);
