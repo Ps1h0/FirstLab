@@ -1,11 +1,11 @@
 import Reader.XMLReader;
 import UsHandler.UsHandler;
 import Writer.Writer;
-import org.xml.sax.SAXException;
 import pojo.Journal;
 import pojo.StudentInformation;
 
 import javax.xml.parsers.ParserConfigurationException;
+import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.ObjectOutputStream;
@@ -14,7 +14,7 @@ import java.util.HashMap;
 public class Main {
 
     public static void main(String[] args) throws Exception {
-        try {
+//        try {
 
             XMLReader reader = new XMLReader();
             reader.createDocument("src/main/resources/text.xml");
@@ -23,29 +23,20 @@ public class Main {
             writer.writeToTxt(jur);
 
 
-            UsHandler usHandler = new UsHandler("Main");
+            UsHandler usHandler = new UsHandler();
             Journal lastJournal = usHandler.getLastJournal();
-            System.out.println(usHandler.changeLog(lastJournal, jur));
-//            usHandler.markDifference(usHandler.getLastJournal(), jur, "vakya");
+            File logFile = new File("log.txt");
+            usHandler.createLog(logFile,usHandler.changeLog(lastJournal, jur));
 
-//            usHandler.chandgeLog(usHandler.getLastJournal(), jur);
-            //usHandler.lastSerializableJournal(jur);
-            //System.out.println(jur.getStudents().toString());
-            //System.out.println("Last journal");
 
-            //System.out.println("new journal");
-           // System.out.println(reader.getPOJO());
-
-            FileOutputStream fileOutputStream = new FileOutputStream("tempJournal");
-            ObjectOutputStream objectOutputStream = new ObjectOutputStream(fileOutputStream);
-            objectOutputStream.writeObject(jur);
-            objectOutputStream.close();
+            UsHandler.createTempJournal();
 
 
 
 
-        } catch (Exception e){
-            UsHandler.HandlerException(e, "Main");
-        }
+
+//        } catch (Exception e){
+//            UsHandler.HandlerException(e, "Main");
+//        }
     }
 }
