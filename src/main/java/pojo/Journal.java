@@ -28,8 +28,9 @@ public class Journal implements Serializable {
             String student = studentInformation.getStudent();
             ref.returnLine += "\n" + student + " {\n";
             studentInformation.getProgressStudents().forEach(progressStudent -> {
-                ref.returnLine += progressStudent.getSubject() + " : " + progressStudent.getMark() + "\n}";
+                ref.returnLine += progressStudent.getSubject() + " : " + progressStudent.getMark() + "\n";
             });
+            ref.returnLine += "}\n";
         });
         return ref.returnLine;
     }

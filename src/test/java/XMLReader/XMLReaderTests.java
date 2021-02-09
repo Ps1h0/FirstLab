@@ -1,6 +1,6 @@
 package XMLReader;
 
-import Reader.XMLReader;
+
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -13,7 +13,7 @@ import java.io.IOException;
 
 class XMLReaderTests extends Assertions {
 
-    private static final XMLReader reader = new XMLReader();
+    private static final XMLReaderForTest reader = new XMLReaderForTest();
 
     @Test
     @DisplayName("NotExistingFile")
@@ -27,7 +27,7 @@ class XMLReaderTests extends Assertions {
     @DisplayName("EmptyFile")
     public void EmptyFileTest() throws IOException, SAXException, ParserConfigurationException {
         Throwable thrown = assertThrows(SAXParseException.class, () -> {
-            reader.createDocument("FirstLab/src/Tests/XMLReader/EmptyFile.xml");
+            reader.createDocument("src/test/java/XMLReader/EmptyFile.xml");
         });
     }
 
@@ -35,7 +35,7 @@ class XMLReaderTests extends Assertions {
     @DisplayName("NotValidFile")
     public void NotValidFileTest() throws IOException, SAXException, ParserConfigurationException {
         Throwable thrown = assertThrows(SAXParseException.class, () -> {
-            reader.createDocument("FirstLab/src/Tests/XMLReader/NotValidFile.xml");
+            reader.createDocument("src/test/java/XMLReader/NotValidFile.xml");
         });
     }
 }

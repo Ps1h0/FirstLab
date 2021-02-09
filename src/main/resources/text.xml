@@ -3,14 +3,15 @@
     <student name="vakya">
         <course name="math" mark="2"/>
         <course name="AI" mark="5"/>
-        <course name="PI" mark="000"/>
     </student>
     <student name="masha">
         <course name="mtth" mark="111"/>
         <course name="AI" mark="555"/>
     </student>
     <student name="misha">
-        <course name="math" mark="2"/>
-        <course name="AI" mark="222"/>
+        <course name="mtth" mark="111"/>
+    </student>
+    <student name="mosha">
+        <course name="mtth" mark="111"/>
     </student>
 </students>
